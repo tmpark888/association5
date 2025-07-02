@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ассоциация технического перевооружения промышленности России</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .flag-stripe {
+            height: 8px;
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 33%, #0052cc 33%, #0052cc 66%, #cc0000 66%, #cc0000 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 25px 0;
+            margin-top: 8px;
+            box-shadow: 0 4px 20px rgba(26, 35, 126, 0.3);
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="rgba(255,255,255,0.03)"><circle cx="20" cy="20" r="2"/><circle cx="80" cy="40" r="1.5"/><circle cx="40" cy="80" r="2.5"/><circle cx="70" cy="15" r="1"/><circle cx="15" cy="70" r="2"/></g></svg>');
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+        }
+        
+        .header-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.95), rgba(40, 53, 147, 0.95)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="industrial" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none"><rect x="10" y="10" width="20" height="15"/><rect x="40" y="15" width="25" height="20"/><rect x="15" y="40" width="15" height="25"/><circle cx="70" cy="25" r="8"/><circle cx="25" cy="70" r="6"/></g></pattern></defs><rect width="1200" height="600" fill="url(%23industrial)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #1a237e, #283593, #3949ab, #5c6bc0);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            z-index: 0;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            line-height: 1.1;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #e3f2fd;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            padding: 25px 60px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 68, 68, 0.6);
+        }
+        
+        .urgency {
+            background: linear-gradient(135deg, #cc0000, #aa0000);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .urgency::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+        }
+        
+        .urgency-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .urgency h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .mission {
+            background: white;
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: #1a237e;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            border-radius: 3px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #666;
+            margin-bottom: 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(26, 35, 126, 0.1);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1a237e, #283593);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .mission-card:hover::before {
+            opacity: 1;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(26, 35, 126, 0.2);
+            color: white;
+        }
+        
+        .mission-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #1a237e, #283593);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(26, 35, 126, 0.3);
+        }
+        
+        .mission-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+            font-weight: 700;
+            transition: color 0.4s ease;
+        }
+        
+        .mission-card:hover h3 {
+            color: white;
+        }
+        
+        .mission-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            transition: color 0.4s ease;
+        }
+        
+        .mission-card:hover p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .benefits {
+            background: linear-gradient(135deg, #f1f8ff 0%, #e3f2fd 100%);
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(26,35,126,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+        
+        .benefits-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 40px 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(26, 35, 126, 0.1);
+            border-left: 6px solid #ff4444;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            transition: width 0.3s ease;
+        }
+        
+        .benefit-card:hover::before {
+            width: 100%;
+            border-radius: 20px;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(26, 35, 126, 0.15);
+            color: white;
+        }
+        
+        .benefit-card .icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover .icon {
+            transform: scale(1.2);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .benefit-card:hover h3 {
+            color: white;
+        }
+        
+        .benefit-card p {
+            color: #666;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+        
+        .benefit-card:hover p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="rgba(255,255,255,0.05)"><polygon points="30,10 50,30 30,50 10,30"/><polygon points="80,20 90,40 80,60 70,40"/><polygon points="20,70 40,80 20,90 10,80"/></g></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .stats-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+        
+        .stat-item {
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #ff4444;
+            margin-bottom: 15px;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .stat-label {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(26, 35, 126, 0.05) 0%, transparent 70%);
+        }
+        
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-urgent {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        .patriotic {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1a237e 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .patriotic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="rgba(255,255,255,0.02)"><path d="M50,10 L60,30 L80,30 L65,45 L70,65 L50,55 L30,65 L35,45 L20,30 L40,30 Z"/></g></svg>');
+            background-size: 150px 150px;
+        }
+        
+        .patriotic-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote {
+            font-size: 2.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .footer {
+            background: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 33%, #0052cc 33%, #0052cc 66%, #cc0000 66%, #cc0000 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .mission-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .cta-primary {
+                padding: 20px 40px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flag-stripe"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚙️</div>
+                    <div>
+                        <div style="font-size: 1.3rem;">Ассоциация технического перевооружения</div>
+                        <div style="font-size: 1rem; opacity: 0.8;">промышленности России</div>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    🇷🇺 Национальный проект модернизации
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">⚡ Национальное движение</div>
+                <h1>А ВЫ внесли свой вклад в техническое перевооружение России?</h1>
+                <div class="subtitle">Пока одни думают — другие модернизируют страну</div>
+                <p>Каждый день промедления — это потерянные возможности для вашего бизнеса и ослабление промышленной мощи России. <strong>Лидеры отрасли уже действуют. Не оставайтесь в стороне от истории!</strong></p>
+                <a href="#join" class="cta-primary">Внести свой вклад в перевооружение</a>
+                <p style="margin-top: 25px; font-size: 1.1rem; opacity: 0.9;">
+                    🇷🇺 <strong>Твоя модернизация — сила России!</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="urgency">
+        <div class="container">
+            <div class="urgency-content">
+                <h2>⚡ Каждый день без модернизации — день потерянных возможностей!</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin: 40px 0; text-align: left;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 35px; border-radius: 20px; backdrop-filter: blur(10px); border-left: 5px solid #ffeb3b;">
+                        <h3 style="color: #ffeb3b; margin-bottom: 20px; font-size: 1.4rem;">🏆 Кто уже внес свой вклад:</h3>
+                        <ul style="line-height: 2; font-size: 1.1rem;">
+                            <li>💪 <strong>ПАО "Северсталь"</strong> — ₽50 млрд в модернизацию</li>
+                            <li>⚙️ <strong>КАМАЗ</strong> — новые роботизированные линии</li>
+                            <li>🚀 <strong>"Ростех"</strong> — программа цифровизации</li>
+                            <li>🏭 <strong>Сотни заводов</strong> по всей России</li>
+                            <li>🎯 <strong>Тысячи предпринимателей</strong> — от Калининграда до Владивостока</li>
+                        </ul>
+                        <p style="margin-top: 20px; color: #ffeb3b; font-weight: 600; font-size: 1.2rem;">
+                            А ВЫ ЧТО СДЕЛАЛИ ДЛЯ РОССИИ?
+                        </p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 35px; border-radius: 20px; backdrop-filter: blur(10px); border-left: 5px solid #ff4444;">
+                        <h3 style="color: #ff4444; margin-bottom: 20px; font-size: 1.4rem;">⏰ Что происходит прямо сейчас:</h3>
+                        <ul style="line-height: 2; font-size: 1.1rem;">
+                            <li>📉 <strong>Устаревшее оборудование</strong> тормозит экономику</li>
+                            <li>🌍 <strong>Конкуренты</strong> захватывают ваши рынки</li>
+                            <li>💸 <strong>Упущенная прибыль</strong> каждый день</li>
+                            <li>🚫 <strong>Зависимость от импорта</strong> растет</li>
+                            <li>😔 <strong>Молодежь уезжает</strong> из-за отсутствия перспектив</li>
+                        </ul>
+                        <p style="margin-top: 20px; color: #ff4444; font-weight: 600; font-size: 1.2rem;">
+                            СКОЛЬКО ЕЩЕ МОЖНО ЖДАТЬ?
+                        </p>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #ffeb3b, #ffc107); color: #333; padding: 40px; border-radius: 25px; margin: 40px 0; text-align: center; box-shadow: 0 10px 30px rgba(255, 235, 59, 0.4);">
+                    <h3 style="font-size: 2.2rem; margin-bottom: 20px; font-weight: 800;">🇷🇺 РОССИЯ ЖДЕТ ВАШЕГО РЕШЕНИЯ!</h3>
+                    <p style="font-size: 1.4rem; line-height: 1.6; margin-bottom: 20px;">
+                        Каждый станок, каждая линия, каждая модернизация —<br>
+                        <strong>это ваш личный вклад в техническое перевооружение России!</strong>
+                    </p>
+                    <p style="font-size: 1.6rem; font-weight: 700; color: #d32f2f;">
+                        НЕ БУДЬТЕ НАБЛЮДАТЕЛЕМ — СТАНЬТЕ УЧАСТНИКОМ ИСТОРИИ!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #d32f2f, #f44336); color: white; padding: 80px 0; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g fill=\"rgba(255,255,255,0.05)\"><circle cx=\"20\" cy=\"20\" r=\"2\"/><circle cx=\"80\" cy=\"40\" r=\"1.5\"/><circle cx=\"40\" cy=\"80\" r=\"2.5\"/></g></svg>'); z-index: 0;"></div>
+        <div class="container" style="text-align: center; position: relative; z-index: 1;">
+            <h2 style="font-size: 3.2rem; margin-bottom: 30px; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">⚡ ВНЕСИ СВОЙ ВКЛАД В ПЕРЕВООРУЖЕНИЕ!</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 40px; line-height: 1.6; opacity: 0.95;">
+                Пока вы размышляете — ваши конкуренты действуют!<br>
+                Пока вы откладываете — другие укрепляют позиции!
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin: 50px 0;">
+                <div style="background: rgba(255,255,255,0.15); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">😱</div>
+                    <h3 style="margin-bottom: 15px; color: #ffeb3b;">Что вы теряете каждый день</h3>
+                    <ul style="text-align: left; line-height: 1.8;">
+                        <li>💰 Прибыль от эффективности</li>
+                        <li>🎯 Конкурентные преимущества</li>
+                        <li>🚀 Возможности роста</li>
+                        <li>👥 Лучших сотрудников</li>
+                        <li>🏆 Статус лидера отрасли</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.15); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">💪</div>
+                    <h3 style="margin-bottom: 15px; color: #ffeb3b;">Что дает вклад в перевооружение</h3>
+                    <ul style="text-align: left; line-height: 1.8;">
+                        <li>🏆 Статус "Героя техперевооружения"</li>
+                        <li>📈 Кратный рост производительности</li>
+                        <li>🇷🇺 Вклад в силу России</li>
+                        <li>🎖️ Государственное признание</li>
+                        <li>📺 Слава в СМИ как лидера</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ffeb3b, #ffc107); color: #333; padding: 30px; border-radius: 20px; border: 3px solid white;">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🇷🇺</div>
+                    <h3 style="margin-bottom: 15px; color: #d32f2f; font-weight: 800;">ВАША РОССИЯ ЖДЕТ!</h3>
+                    <p style="line-height: 1.6; font-weight: 600;">
+                        Каждая модернизация —<br>шаг к технологическому суверенитету!<br><br>
+                        <span style="color: #d32f2f; font-size: 1.2rem;">ДЕЙСТВУЙТЕ СЕЙЧАС!</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.3); padding: 40px; border-radius: 25px; margin-top: 50px;">
+                <h3 style="font-size: 2.5rem; margin-bottom: 25px; color: #ffeb3b; font-weight: 800;">🚨 ПОСЛЕДНЕЕ ПРЕДУПРЕЖДЕНИЕ!</h3>
+                <p style="font-size: 1.4rem; line-height: 1.6; margin-bottom: 30px;">
+                    История не прощает тех, кто стоял в стороне в переломные моменты.<br>
+                    <strong>Техническое перевооружение России происходит СЕЙЧАС!</strong>
+                </p>
+                <p style="font-size: 1.8rem; font-weight: 700; color: #ffeb3b; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                    ВНЕСИТЕ СВОЙ ВКЛАД ИЛИ НАВСЕГДА ОСТАНЬТЕСЬ В ПРОШЛОМ!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission">
+        <div class="container">
+            <h2 class="section-title">Наша миссия</h2>
+            <p class="section-subtitle">Ускорение технического перевооружения российских предприятий через объединение усилий производителей оборудования и создание передовых финансовых инструментов модернизации</p>
+            
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🏭</div>
+                    <h3>Модернизация производств</h3>
+                    <p>Замена устаревшего оборудования на современные высокотехнологичные решения для повышения производительности и конкурентоспособности российских предприятий</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🇷🇺</div>
+                    <h3>Технологический суверенитет</h3>
+                    <p>Снижение зависимости от импортного оборудования через развитие отечественного машиностроения и создание полных технологических цепочек</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">💰</div>
+                    <h3>Доступное финансирование</h3>
+                    <p>Создание современных финансовых инструментов, делающих техническое перевооружение доступным для предприятий любого масштаба</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">⚙️</div>
+                    <h3>Промышленный рывок</h3>
+                    <p>Внедрение передовых технологий и автоматизации для кратного увеличения производительности и качества российской продукции</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🌍</div>
+                    <h3>Региональное развитие</h3>
+                    <p>Стимулирование технического перевооружения промышленных предприятий во всех регионах России для равномерного экономического развития</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🚀</div>
+                    <h3>Инновационный прорыв</h3>
+                    <p>Поддержка внедрения инновационных технологий и решений, обеспечивающих лидерство российской промышленности на мировом рынке</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-content">
+                <h2 class="section-title">Преимущества участия в Ассоциации</h2>
+                <p class="section-subtitle">Присоединяясь к Ассоциации, вы становитесь частью национального движения за техническое перевооружение и получаете эксклюзивные возможности для развития</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <span class="icon">💪</span>
+                        <h3>Сила объединения</h3>
+                        <p>Вместо конкуренции за каждого клиента — общий рынок с гарантированным финансированием. Рост продаж каждого участника на 50-150% благодаря коллективной работе</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">🏆</span>
+                        <h3>Статус национального лидера</h3>
+                        <p>Из обычного поставщика — в архитектора технологического суверенитета России. Участие в государственных программах и федеральных проектах как равноправный партнер</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">🛡️</span>
+                        <h3>Коллективная защита интересов</h3>
+                        <p>Больше никто не сможет диктовать условия поодиночке. Вместе мы лоббируем выгодные условия работы, защищаемся от недобросовестной конкуренции и демпинга</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">💎</span>
+                        <h3>Эксклюзивные финансовые инструменты</h3>
+                        <p>Больше не нужно искать финансирование для клиентов. Ассоциация предоставляет готовые решения: лизинг, кредиты, субсидии — все под ключ</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">🌐</span>
+                        <h3>Синергия и кооперация</h3>
+                        <p>Обмен клиентами, совместные проекты, общие тендеры. То, что раньше было конкуренцией, становится взаимовыгодным сотрудничеством</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="icon">🎯</span>
+                        <h3>Приоритет в госпрограммах</h3>
+                        <p>Члены Ассоциации получают преференции в государственных закупках и программах поддержки. Доступ к закрытым тендерам и льготным условиям</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-content">
+                <h2 class="section-title" style="color: white;">Масштаб возможностей</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Потенциал технического перевооружения российской промышленности</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">₽15</span>
+                        <div class="stat-label">Трлн рублей — объем рынка технического перевооружения</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">75%</span>
+                        <div class="stat-label">Оборудования требует замены в ближайшие 5 лет</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1,500+</span>
+                        <div class="stat-label">Производителей оборудования готовы присоединиться</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">300%</span>
+                        <div class="stat-label">Рост эффективности после модернизации</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="patriotic">
+        <div class="container">
+            <div class="patriotic-content">
+                <div class="quote">
+                    "Техническое перевооружение — это основа промышленной мощи России.<br>
+                    Кто владеет передовыми технологиями — тот определяет будущее страны."
+                </div>
+                <p style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 40px;">
+                    Каждое предприятие, присоединившееся к Ассоциации технического перевооружения,<br>
+                    вносит вклад в технологическую независимость и процветание России.
+                </p>
+                <p style="font-size: 1.5rem; font-weight: 600; color: #ff4444;">
+                    🇷🇺 Россия должна быть сильной. Россия будет сильной!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="join">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-urgent">⏰ Момент истины для российской промышленности</div>
+                <h2 class="section-title">Присоединяйтесь к тем, кто меняет правила игры</h2>
+                <p style="font-size: 1.3rem; color: #333; margin-bottom: 30px; line-height: 1.7;">
+                    <strong>Мы больше не можем работать по старым правилам.</strong> Времена одиночек прошли. 
+                    Будущее — за теми, кто объединяется для достижения общих целей.
+                </p>
+                <div style="background: linear-gradient(135deg, #f1f8ff, #e3f2fd); padding: 40px; border-radius: 20px; margin: 40px 0; border-left: 6px solid #ff4444;">
+                    <h3 style="color: #1a237e; margin-bottom: 20px; font-size: 1.6rem;">🤝 Что значит быть соучредителем:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        <div>
+                            <h4 style="color: #ff4444; margin-bottom: 15px;">🏛️ Государственное признание:</h4>
+                            <ul style="text-align: left; color: #333; font-size: 1.1rem; line-height: 1.8;">
+                                <li><strong>Именная табличка</strong> в Минпромторге РФ</li>
+                                <li><strong>Участие в Совете</strong> Ассоциации с правом голоса</li>
+                                <li><strong>Личная встреча</strong> с зам. министра промышленности</li>
+                                <li><strong>Именной сертификат</strong> "За вклад в техперевооружение"</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #ff4444; margin-bottom: 15px;">💰 Эксклюзивные привилегии:</h4>
+                            <ul style="text-align: left; color: #333; font-size: 1.1rem; line-height: 1.8;">
+                                <li><strong>Льготное финансирование</strong> на 5 лет</li>
+                                <li><strong>Приоритет в госзакупках</strong> стоимостью ₽500+ млрд</li>
+                                <li><strong>Доступ к закрытым тендерам</strong> крупных корпораций</li>
+                                <li><strong>Право первой подписи</strong> в соглашениях Ассоциации</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 30px; border-radius: 15px; margin: 30px 0; border: 2px solid #ff9800;">
+                    <h3 style="color: #e65100; margin-bottom: 15px; font-size: 1.4rem;">⚡ Почему нужно решать СЕЙЧАС:</h3>
+                    <div style="text-align: left; max-width: 700px; margin: 0 auto;">
+                        <p style="color: #333; margin-bottom: 15px; font-size: 1.1rem; line-height: 1.7;">
+                            🔸 <strong>Государство активно ищет</strong> партнеров для реализации программ техперевооружения<br>
+                            🔸 <strong>Бюджет на поддержку промышленности</strong> увеличен в 3 раза на 2025-2027 годы<br>
+                            🔸 <strong>Конкуренты уже думают</strong> о создании собственных объединений<br>
+                            🔸 <strong>Первые участники получают</strong> максимальные преференции и влияние
+                        </p>
+                        <p style="color: #e65100; font-weight: 600; font-size: 1.2rem; text-align: center; margin-top: 20px;">
+                            Кто не успел присоединиться к движению — будет наблюдать со стороны! 
+                        </p>
+                    </div>
+                </div>
+                <p style="color: #666; margin-bottom: 40px; font-size: 1.2rem;">
+                    Подписывая Соглашение о создании Ассоциации, вы подтверждаете готовность активно участвовать 
+                    в техническом перевооружении российской промышленности и поддержке отечественных производителей.
+                </p>
+                <a href="#" class="cta-primary" onclick="showJoinForm()">Внести свой вклад — подписать соглашение</a>
+                <p style="margin-top: 30px; color: #ff4444; font-weight: 600; font-size: 1.1rem;">
+                    ⚠️ Последний шанс стать соучредителем: <span style="font-size: 1.3rem;">23 места из 100</span>
+                </p>
+                <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #fff9c4, #ffeb3b); border-radius: 15px; color: #333;">
+                    <h3 style="color: #e65100; margin-bottom: 15px; font-size: 1.4rem;">🇷🇺 ВАШ СЕРТИФИКАТ ГЕРОЯ ТЕХПЕРЕВООРУЖЕНИЯ:</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.7;">
+                        Каждый участник получает именной сертификат<br>
+                        <strong>"[Ваше ФИО] внес вклад в техническое перевооружение промышленности России"</strong><br>
+                        с размещением на почетной <strong>"Стене Героев"</strong> и публикацией вашей истории успеха
+                    </p>
+                </div>
+                <div style="margin-top: 30px; padding: 40px; background: linear-gradient(135deg, #d32f2f, #f44336); border-radius: 20px; border: 3px solid #ffeb3b; box-shadow: 0 15px 40px rgba(211, 47, 47, 0.4);">
+                    <h3 style="color: #ffeb3b; font-size: 2rem; margin-bottom: 20px; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                        ❓ ГЛАВНЫЙ ВОПРОС К ВАМ:
+                    </h3>
+                    <p style="font-size: 1.6rem; line-height: 1.4; margin-bottom: 25px; color: white;">
+                        <strong>"А ТЫ КАКОЙ ВКЛАД ВНЕС В ТЕХПЕРЕВООРУЖЕНИЕ РОССИИ?"</strong>
+                    </p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                        <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px;">
+                            💭 <strong>Ваши коллеги скажут:</strong> "Он внес ₽50 млн в модернизацию завода"<br>
+                            💭 <strong>Ваши дети спросят:</strong> "Папа, а что ты сделал для России?"<br>
+                            💭 <strong>История запомнит:</strong> "Он был среди тех, кто перевооружал промышленность"
+                        </p>
+                        <p style="font-size: 1.4rem; color: #ffeb3b; font-weight: 700; text-align: center;">
+                            А ЧТО СКАЖУТ О ВАШЕМ ВКЛАДЕ?
+                        </p>
+                    </div>
+                    <p style="font-size: 1.8rem; font-weight: 800; color: #ffeb3b; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); text-align: center;">
+                        НЕ ОСТАВАЙТЕСЬ БЕЗ ОТВЕТА!<br>
+                        ВНЕСИТЕ СВОЙ ВКЛАД ПРЯМО СЕЙЧАС! 🚀
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #1a237e, #283593); color: white; padding: 60px 0; text-align: center;">
+        <div class="container">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #ff4444;">🏭 Инициатор проекта</h3>
+            <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 30px; display: inline-block; backdrop-filter: blur(10px);">
+                <h4 style="font-size: 1.4rem; margin-bottom: 15px;">Группа компаний "Транслизинг"</h4>
+                <p style="margin-bottom: 20px; opacity: 0.9;">Лидер рынка финансирования технического перевооружения промышленности</p>
+                <div style="font-size: 1.8rem; font-weight: bold; color: #ff4444; letter-spacing: 2px;">ТРАНСЛИЗИНГ</div>
+                <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.8;">
+                    <strong>Наша миссия:</strong> Обеспечение доступности современного оборудования<br>
+                    для каждого российского предприятия через инновационные финансовые решения
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="font-size: 1.2rem; margin-bottom: 15px;">&copy; 2025 Ассоциация технического перевооружения промышленности России</p>
+            <p style="opacity: 0.8; font-size: 1.1rem;">🇷🇺 Вместе к технологическому лидерству России</p>
+            <p style="margin-top: 20px; opacity: 0.7; font-size: 0.9rem;">
+                Техническое перевооружение — основа промышленной мощи | Модернизация — путь к независимости
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showJoinForm() {
+            const message = `
+🏭 ВНЕСТИ СВОЙ ВКЛАД В ТЕХПЕРЕВООРУЖЕНИЕ РОССИИ 🏭
+
+А ТЫ КАКОЙ ВКЛАД ВНЕС? 
+Сейчас твой шанс стать ГЕРОЕМ истории!
+
+📞 Телефон: +7 (495) 123-45-67
+📧 Email: vklad@translizing.ru
+🌐 Сайт: www.vklad-v-perevooruzhenie.ru
+
+🏆 ТВОЙ ВКЛАД = ТВОЯ СЛАВА:
+✅ Именной сертификат "Герой техперевооружения"
+✅ Размещение на "Стене Героев" в Минпромторге
+✅ Публикация твоей истории в федеральных СМИ
+✅ Государственное признание твоего вклада
+✅ Льготное финансирование на 5 лет
+
+❗ ПОСЛЕДНИЙ ШАНС: Осталось только 23 места из 100!
+
+🇷🇺 КОГДА ДЕТИ СПРОСЯТ: "А ЧТО ТЫ СДЕЛАЛ ДЛЯ РОССИИ?" 
+— У ТЕБЯ БУДЕТ ЧТО ОТВЕТИТЬ!
+
+Не будь наблюдателем истории — ВНЕСИ СВОЙ ВКЛАД!
+            `;
+            alert(message);
+        }
+
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за элементами
+        document.querySelectorAll('.mission-card, .benefit-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'opacity 1s ease, transform 1s ease';
+            observer.observe(el);
+        });
+
+        // Счетчик urgency
+        let remainingPlaces = 23;
+        setInterval(() => {
+            if (Math.random() < 0.3 && remainingPlaces > 10) {
+                remainingPlaces--;
+                const counter = document.querySelector('[style*="font-size: 1.3rem"]');
+                if (counter) {
+                    counter.textContent = `${remainingPlaces} из 100`;
+                }
+            }
+        }, 30000); // Уменьшаем каждые 30 секунд
+
+        // Плавная прокрутка
+        document.querySelector('.cta-primary').addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#join') {
+                e.preventDefault();
+                document.querySelector('#join').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
